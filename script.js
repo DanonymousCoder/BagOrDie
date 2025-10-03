@@ -8,6 +8,7 @@ const finalVal = document.getElementById("final-value")
 const box = document.getElementById("box");
 const closeScore = document.getElementById("close");
 const balance = document.getElementById("balance");
+const spinArrow = document.getElementById("spin-arrow");
 
 leaderboard.addEventListener("click", () => {
     container.classList.add("leaderboard-active");
@@ -24,45 +25,40 @@ closeScore.addEventListener("click", () => {
 const rotationValues = [
     {
         minAngle: 0,
-        maxAngle: 30,
+        maxAngle: 60,
         value: "$10K"
     },
     {
-        minAngle: 31,
-        maxAngle: 90,
+        minAngle: 61,
+        maxAngle: 120,
         value: "$10B"
     },
     {
-        minAngle: 91,
-        maxAngle: 150,
+        minAngle: 121,
+        maxAngle: 180,
         value: "DEATH"
     },
     {
-        minAngle: 151,
-        maxAngle: 210,
+        minAngle: 181,
+        maxAngle: 240,
         value: "$1"
     },
     {
-        minAngle: 211,
-        maxAngle: 270,
+        minAngle: 241,
+        maxAngle: 300,
         value: "$500K"
     },
     {
-        minAngle: 271,
-        maxAngle: 330,
-        value: "$10K"
-    },
-    {
-        minAngle: 331,
+        minAngle: 301,
         maxAngle: 360,
-        value: "$1B"
+        value: "$10K"
     }
 ];
 
 const eachSize = [80, 80, 80, 80, 80, 80];
 
 const wheelColors = [
-    "#000000",
+    "#bc1",
     "#808080",
     "#808080",
     "#808080",
@@ -103,8 +99,9 @@ const getValue = (angVal) => {
     for (let i of rotationValues) {
         if (angVal <= i.maxAngle && angVal >= i.minAngle) {
             finalVal.innerHTML = `+${i.value}`;
-            box.style.display = "flex";
+            // box.style.display = "flex";
             spinBtn.setAttribute("disabled", "false");
+            console.log((i.value).toLocaleString())
 
             switch (i.value) {
                 case "$1":
@@ -133,7 +130,7 @@ const getValue = (angVal) => {
                     balance.textContent = moneyAddUp.toLocaleString();
                     break;
                 default:
-                    moneyAddUp = 0.000;
+                    moneyAddUp = 0;
                     console.log(moneyAddUp);
                     balance.textContent = moneyAddUp.toLocaleString();
             }
@@ -150,7 +147,8 @@ spinBtn.addEventListener("click", () => {
     spinBtn.setAttribute("disabled", "true");
     finalVal.innerHTML = `<p>Pray for your butts</p>`;
 
-    let randomAng = Math.floor(Math.random() * (355 - 0 + 1) + 0);
+    let randomAng = Math.floor(Math.random() * 354);
+
 
     let rotationInterval = window.setInterval(() => {
         myChart.options.rotation = myChart.options.rotation + resultVal;
@@ -163,7 +161,8 @@ spinBtn.addEventListener("click", () => {
         }
 
         else if (count > 15 && myChart.options.rotation == randomAng) {
-            getValue(randomAng);
+            let adjustedAng = (360 - randomAng) % 360;
+            getValue(adjustedAng);
             clearInterval(rotationInterval);
             count = 0;
             resultVal = 101;

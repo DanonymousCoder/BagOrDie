@@ -75,6 +75,18 @@ main {
     font-size: 2rem;
 }
 
+.wheel {
+    position: relative;
+    height: auto;
+}
+
+.wheel img {
+    position: absolute;
+    height: 70px;
+    top: 0;
+    left: 50%;
+}
+
 #myCanvas {
     display: block;
     width: auto;
