@@ -68,10 +68,13 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 2em;
+    margin: 2em 0;
 }
 
 #myCanvas {
     display: block;
+    width: auto;
+    height: auto;
 }
 
 @keyframes rotate {

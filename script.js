@@ -52,11 +52,11 @@ const rotationValues = [
     }
 ];
 
-const eachSize = [10, 10, 10, 10, 10, 10];
+const eachSize = [100, 100, 100, 100, 100, 100];
 
 const wheelColors = [
-    "#000000",
-    "#000000",
+    "#B21",
+    "#B21",
     "#000000",
     "#000000",
     "#000000",
@@ -67,7 +67,7 @@ let myChart = new Chart(circleCanvas, {
     plugins: [ChartDataLabels],
     type: "pie",
     data: {
-        labels: [1, 2, 3, 4, 5, 6],
+        labels: ["DEATH", 2, 3, 4, 5, 6],
         datasets: [
             {
                 backgroundcolor: wheelColors,
@@ -83,7 +83,7 @@ let myChart = new Chart(circleCanvas, {
             datalabels: {
                 color: "#FFFFFF",
                 formatter: (_, context) => context.chart.data.labels[context.dataIndex],
-                font: { size: 24 },
+                font: { size: 20 },
             },
         },
     },
@@ -108,7 +108,7 @@ spinBtn.addEventListener("click", () => {
     spinBtn.setAttribute("disabled", "true");
     finalVal.innerHTML = `<p>Pray for your butts</p>`;
 
-    let randomAng = Math.floor(Math.random * (355 - 0 + 1) + 0);
+    let randomAng = Math.floor(Math.random() * (355 - 0 + 1) + 0);
 
     let rotationInterval = window.setInterval(() => {
         myChart.options.rotation = myChart.options.rotation + resultVal;
@@ -126,5 +126,5 @@ spinBtn.addEventListener("click", () => {
             count = 0;
             resultVal = 101;
         }
-    }, 5)
+    }, 10)
 });
