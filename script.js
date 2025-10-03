@@ -6,6 +6,7 @@ const exitBoard = document.getElementById("exit-board");
 const container = document.getElementById("container");
 const finalVal = document.getElementById("final-value")
 const box = document.getElementById("box");
+const closeScore = document.getElementById("close");
 
 leaderboard.addEventListener("click", () => {
     container.classList.add("leaderboard-active");
@@ -15,45 +16,49 @@ exitBoard.addEventListener("click", () => {
     container.classList.remove("leaderboard-active");
 })
 
+closeScore.addEventListener("click", () => {
+    box.style.display = "none"
+})
+
 const rotationValues = [
     {
         minAngle: 0,
         maxAngle: 30,
-        value: 1
+        value: "$10K"
     },
     {
         minAngle: 31,
         maxAngle: 90,
-        value: 2
+        value: "$10B"
     },
     {
         minAngle: 91,
         maxAngle: 150,
-        value: 3
+        value: "DEATH"
     },
     {
         minAngle: 151,
         maxAngle: 210,
-        value: 4
+        value: "$1"
     },
     {
         minAngle: 211,
         maxAngle: 270,
-        value: 4
+        value: "$500K"
     },
     {
         minAngle: 271,
         maxAngle: 330,
-        value: 5
+        value: "$10K"
     },
     {
         minAngle: 331,
         maxAngle: 360,
-        value: 6
+        value: "$1B"
     }
 ];
 
-const eachSize = [100, 100, 100, 100, 100, 100];
+const eachSize = [80, 80, 80, 80, 80, 80];
 
 const wheelColors = [
     "#000000",
