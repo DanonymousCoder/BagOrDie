@@ -5,6 +5,7 @@ const userName = document.getElementById("username");
 const exitBoard = document.getElementById("exit-board");
 const container = document.getElementById("container");
 const finalVal = document.getElementById("final-value")
+const box = document.getElementById("box");
 
 leaderboard.addEventListener("click", () => {
     container.classList.add("leaderboard-active");
@@ -55,22 +56,22 @@ const rotationValues = [
 const eachSize = [100, 100, 100, 100, 100, 100];
 
 const wheelColors = [
-    "#B21",
-    "#B21",
     "#000000",
-    "#000000",
-    "#000000",
-    "#000000"
-]
+    "#808080",
+    "#808080",
+    "#808080",
+    "#808080",
+    "#808080"
+];
 
 let myChart = new Chart(circleCanvas, {
     plugins: [ChartDataLabels],
     type: "pie",
     data: {
-        labels: ["DEATH", 2, 3, 4, 5, 6],
+        labels: ["DEATH", "$10B", "$1K", "$1", "$500K", "$10K"],
         datasets: [
             {
-                backgroundcolor: wheelColors,
+                backgroundColor: wheelColors,
                 data: eachSize
             }],
     },
@@ -94,6 +95,7 @@ const getValue = (angVal) => {
     for (let i of rotationValues) {
         if (angVal <= i.maxAngle && angVal >= i.minAngle) {
             finalVal.innerHTML = `<p>You got + ${i.value}`;
+            box.style.display = "flex";
             spinBtn.setAttribute("disabled", "false");
             break;
         }

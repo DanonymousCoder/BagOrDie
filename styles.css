@@ -92,6 +92,18 @@ main {
     cursor: pointer;
 }
 
+#box {
+    display: none;
+    position: absolute;
+    height: 50vh;
+    width: 80%;
+    background-color: yellow;
+    bottom: 10vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 footer {
     background-color: rgb(245, 241, 241);
     width: 100%;
