@@ -7,6 +7,7 @@ const container = document.getElementById("container");
 const finalVal = document.getElementById("final-value")
 const box = document.getElementById("box");
 const closeScore = document.getElementById("close");
+const balance = document.getElementById("balance");
 
 leaderboard.addEventListener("click", () => {
     container.classList.add("leaderboard-active");
@@ -96,12 +97,46 @@ let myChart = new Chart(circleCanvas, {
 });
 
 
+let moneyAddUp = 0;
+
 const getValue = (angVal) => {
     for (let i of rotationValues) {
         if (angVal <= i.maxAngle && angVal >= i.minAngle) {
-            finalVal.innerHTML = `<p>You got + ${i.value}`;
+            finalVal.innerHTML = `+${i.value}`;
             box.style.display = "flex";
             spinBtn.setAttribute("disabled", "false");
+
+            switch (i.value) {
+                case "$1":
+                    moneyAddUp += 1;
+                    console.log(moneyAddUp);
+                    balance.textContent = moneyAddUp.toLocaleString();
+                    break;
+                case "$1K":
+                    moneyAddUp += 1000;
+                    console.log(moneyAddUp);
+                    balance.textContent = moneyAddUp.toLocaleString();
+                    break;
+                case "$10K":
+                    moneyAddUp += 10000;
+                    console.log(moneyAddUp);
+                    balance.textContent = moneyAddUp.toLocaleString();
+                    break;
+                case "$500K":
+                    moneyAddUp += 500000;
+                    console.log(moneyAddUp);
+                    balance.textContent = moneyAddUp.toLocaleString();
+                    break;
+                case "$10B":
+                    moneyAddUp += 10000000000;
+                    console.log(moneyAddUp);
+                    balance.textContent = moneyAddUp.toLocaleString();
+                    break;
+                default:
+                    moneyAddUp = 0.000;
+                    console.log(moneyAddUp);
+                    balance.textContent = moneyAddUp.toLocaleString();
+            }
             break;
         }
     }

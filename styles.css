@@ -71,6 +71,10 @@ main {
     margin: 2em 0;
 }
 
+.balance-cont p {
+    font-size: 2rem;
+}
+
 #myCanvas {
     display: block;
     width: auto;
@@ -114,6 +118,16 @@ main {
     height: 100px;
 }
 
+#box p {
+    font-size: 1.5rem;
+}
+
+#box span {
+    font-size: 3rem;
+    font-weight: bold;
+    padding-left: .2em;
+}
+
 .close {
     text-decoration: none;
     color: #000000;
@@ -122,6 +136,7 @@ main {
     padding: 1em;
     width: 80%;
     text-align: center;
+    border-radius: 10px;
 }
 
 footer {
