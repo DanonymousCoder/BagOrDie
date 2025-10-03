@@ -66,3 +66,29 @@ const wheelColors = [
     "#000000",
     "#000000"
 ]
+
+let myChart = new Chart(circleCanvas, {
+    plugins: [ChartDataLabels],
+    type: "pie",
+    data: {
+        labels: [1, 2, 3, 4, 5, 6],
+        datasets: [
+            {
+                backgroundcolor: wheelColors,
+                data: eachSize
+            }],
+    },
+    options: {
+        responsive: true,
+        animation: { duration: 0 },
+        plugins: {
+            tooltip: false,
+            legend: { display: false },
+            datalabels: {
+                color: "#FFFFFF",
+                formatter: (_, context) => context.chart.data.labels[context.dataIndex],
+                font: { size: 24 },
+            },
+        },
+    },
+});
