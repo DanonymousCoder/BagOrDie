@@ -4,6 +4,7 @@ const circleCanvas = document.getElementById("myCanvas");
 const userName = document.getElementById("username");
 const exitBoard = document.getElementById("exit-board");
 const container = document.getElementById("container");
+const finalVal = document.getElementById("final-value")
 
 leaderboard.addEventListener("click", () => {
     container.classList.add("leaderboard-active");
@@ -12,11 +13,6 @@ leaderboard.addEventListener("click", () => {
 exitBoard.addEventListener("click", () => {
     container.classList.remove("leaderboard-active");
 })
-
-let circleCanvasX = circleCanvas.getContext("2d");
-circleCanvasX.beginPath();
-circleCanvasX.arc(100, 100, 100, 0, 2 * Math.PI);
-circleCanvasX.stroke();
 
 const rotationValues = [
     {
@@ -91,4 +87,44 @@ let myChart = new Chart(circleCanvas, {
             },
         },
     },
+});
+
+
+const getValue = (angVal) => {
+    for (let i of rotationValues) {
+        if (angVal <= i.maxAngle && angVal >= i.minAngle) {
+            finalVal.innerHTML = `<p>You got + ${i.value}`;
+            spinBtn.setAttribute("disabled", "false");
+            break;
+        }
+    }
+}
+
+
+let count = 0;
+let resultVal = 101;
+
+spinBtn.addEventListener("click", () => {
+    spinBtn.setAttribute("disabled", "true");
+    finalVal.innerHTML = `<p>Pray for your butts</p>`;
+
+    let randomAng = Math.floor(Math.random * (355 - 0 + 1) + 0);
+
+    let rotationInterval = window.setInterval(() => {
+        myChart.options.rotation = myChart.options.rotation + resultVal;
+        myChart.update();
+
+        if (myChart.options.rotation >= 360) {
+            count += 1;
+            resultVal -= 5;
+            myChart.options.rotation = 0;
+        }
+
+        else if (count > 15 && myChart.options.rotation == randomAng) {
+            getValue(randomAng);
+            clearInterval(rotationInterval);
+            count = 0;
+            resultVal = 101;
+        }
+    }, 5)
 });

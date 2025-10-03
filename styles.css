@@ -33,6 +33,7 @@ nav {
 
 #leaderboard {
     font-size: 1.5rem;
+    cursor: pointer;
 }
 
 .leaderboard-active {
@@ -52,6 +53,7 @@ nav {
 
 #exit-board {
     display: none;
+    cursor: pointer;
 }
 
 .leaderboard-active #exit-board {
@@ -68,7 +70,15 @@ main {
     gap: 2em;
 }
 
-#myCanvas {}
+#myCanvas {
+    display: block;
+}
+
+@keyframes rotate {
+    100% {
+        transform: translate(360deg)
+    }
+}
 
 .spin-btn {
     color: #000000;
@@ -76,6 +86,7 @@ main {
     padding: .75rem 1.5rem;
     border: 1px solid #000000;
     border-radius: .5em;
+    cursor: pointer;
 }
 
 footer {
