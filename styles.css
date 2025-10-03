@@ -1,0 +1,105 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(245, 241, 241);
+    padding: 1rem 0;
+}
+
+nav {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#leaderboard {
+    font-size: 1.5rem;
+}
+
+.leaderboard-active {
+    position: relative;
+}
+
+.leaderboard-active .board {
+    position: absolute;
+    background-color: antiquewhite;
+    height: 90vh;
+    top: 10vh;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+#exit-board {
+    display: none;
+}
+
+.leaderboard-active #exit-board {
+    display: block;
+    padding: .5em;
+    border-radius: 50%;
+    border: 1px solid #000000;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+
+#myCanvas {}
+
+.spin-btn {
+    color: #000000;
+    background-color: rgb(245, 241, 241);
+    padding: .75rem 1.5rem;
+    border: 1px solid #000000;
+    border-radius: .5em;
+}
+
+footer {
+    background-color: rgb(245, 241, 241);
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-left: 2em;
+}
+
+#profile {
+    font-size: 2rem;
+}
+
+input {
+    outline: none;
+    border: 1px solid #000000;
+    padding: .5em 1em;
+    border-radius: .5rem;
+}
