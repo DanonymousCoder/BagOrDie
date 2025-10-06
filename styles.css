@@ -63,13 +63,14 @@ nav {
     gap: 1em;
     padding: .25em .5em;
     border-radius: 10px;
-    background-color: yellow;
+    background-color: #f0f0f0;
 }
 
 #exit-board {
     cursor: pointer;
     display: flex;
     justify-content: flex-end;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .leaderboard-active #exit-board {
@@ -100,7 +101,7 @@ main {
     position: absolute;
     height: 70px;
     top: 0;
-    left: 50%;
+    left: 39%;
 }
 
 #myCanvas {

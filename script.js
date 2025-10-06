@@ -1,7 +1,6 @@
 const spinBtn = document.querySelector(".spin-btn");
 const leaderboard = document.getElementById("leaderboard");
 const circleCanvas = document.getElementById("myCanvas");
-let userName = document.getElementById("username");
 const exitBoard = document.getElementById("exit-board");
 const container = document.getElementById("container");
 const finalVal = document.getElementById("final-value")
@@ -9,10 +8,28 @@ const box = document.getElementById("box");
 const closeScore = document.getElementById("close");
 const balance = document.getElementById("balance");
 const spinArrow = document.getElementById("spin-arrow");
-const board = document.querySelector(".board")
+const board = document.querySelector(".board");
+
+
+const STORAGE_KEYS = {
+    CURRENT_BALANCE: "currentBalance",
+    PLAYER_NAME: "userName",
+    GAME_SESSIONS: "gameSessions",
+    TOTAL_SPINS: "totalSpins"
+};
+
+let userName = document.getElementById("username");
+let moneyAddUp = loadFromLocal(STORAGE_KEYS.CURRENT_BALANCE, 0);
+let totalSpins = loadFromLocal(STORAGE_KEYS.TOTAL_SPINS, 0);
+let currentSessionSpins = 0;
 
 leaderboard.addEventListener("click", () => {
+    updateLeaderboard();
     board.style.display = "flex";
+});
+
+userName.addEventListener("change", () => {
+    saveToLocal(STORAGE_KEYS.PLAYER_NAME, userName.value);
 });
 
 exitBoard.addEventListener("click", () => {
@@ -71,7 +88,7 @@ let myChart = new Chart(circleCanvas, {
     plugins: [ChartDataLabels],
     type: "pie",
     data: {
-        labels: ["DEATH", "$10B", "$1K", "$1", "$500K", "$10K"],
+        labels: ["$10K", "$10B", "DEATH", "$1", "$500K", "$10K"],
         datasets: [
             {
                 backgroundColor: wheelColors,
@@ -94,15 +111,18 @@ let myChart = new Chart(circleCanvas, {
 });
 
 
-let moneyAddUp = 0;
 
 const getValue = (angVal) => {
     for (let i of rotationValues) {
         if (angVal <= i.maxAngle && angVal >= i.minAngle) {
             finalVal.innerHTML = `+${i.value}`;
-            // box.style.display = "flex";
+            box.style.display = "flex";
             spinBtn.setAttribute("disabled", "false");
-            console.log((i.value).toLocaleString())
+            console.log((i.value).toLocaleString());
+
+            totalSpins++;
+            currentSessionSpins++;
+            saveToLocal(STORAGE_KEYS.TOTAL_SPINS, totalSpins)
 
             switch (i.value) {
                 case "$1":
@@ -131,10 +151,16 @@ const getValue = (angVal) => {
                     balance.textContent = moneyAddUp.toLocaleString();
                     break;
                 default:
+                    if (moneyAddUp > 0) {
+                        saveGameSession(moneyAddUp, currentSessionSpins);
+                    }
+
                     moneyAddUp = 0;
-                    console.log(moneyAddUp);
+                    currentSessionSpins = 0;
                     balance.textContent = moneyAddUp.toLocaleString();
             }
+
+            saveToLocal(STORAGE_KEYS.CURRENT_BALANCE, moneyAddUp);
             break;
         }
     }
@@ -174,12 +200,6 @@ spinBtn.addEventListener("click", () => {
 
 
 
-userName.value = "D'anonymousCoder";
-const STORAGE_KEYS = {
-    CURRENT_BALANCE: "",
-    PLAYER_NAME: "",
-    GAME_SESSIONS: ""
-}
 
 function saveToLocal(key, value) {
     try {
@@ -199,10 +219,10 @@ function loadFromLocal(key, defVal = null) {
     }
 }
 
-function saveGameSession(score) {
+function saveGameSession(money, spins) {
     const sessions = loadFromLocal(STORAGE_KEYS.GAME_SESSIONS, []);
     const newSession = {
-        mooney: moneyAddUp,
+        money: money,
         spins: spins,
         playerName: userName.value || 'Anon',
         timestamp: new Date().toISOString(),
@@ -218,4 +238,18 @@ function saveGameSession(score) {
     saveToLocal(STORAGE_KEYS.GAME_SESSIONS, sessions)
 }
 
+totalSpins = loadFromLocal(STORAGE_KEYS.TOTAL_SPINS, 0);
+currentSessionSpins = 0
 
+function updateLeaderboard() {
+    let moneyAddUp = loadFromLocal(STORAGE_KEYS.CURRENT_BALANCE, 0);
+
+    balance.textContent = moneyAddUp.toLocaleString();
+}
+
+const savedPlayerName = loadFromLocal(STORAGE_KEYS.PLAYER_NAME, "Anon")
+userName.value = savedPlayerName;
+
+setInterval(() => {
+    saveToLocal(STORAGE_KEYS.CURRENT_BALANCE, moneyAddUp)
+}, 30000)
