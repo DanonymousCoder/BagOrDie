@@ -40,20 +40,36 @@ nav {
     position: relative;
 }
 
-.leaderboard-active .board {
+.board {
     position: absolute;
     background-color: antiquewhite;
     height: 90vh;
     top: 10vh;
     width: 90%;
-    display: flex;
+    display: none;
     flex-direction: column;
-    align-items: end;
+    z-index: 1000;
+    padding: 1em;
+    gap: 1em;
+}
+
+.users-b {
+    width: 100%;
+}
+
+.user-b {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: .25em .5em;
+    border-radius: 10px;
+    background-color: yellow;
 }
 
 #exit-board {
-    display: none;
     cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .leaderboard-active #exit-board {

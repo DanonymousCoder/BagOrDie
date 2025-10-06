@@ -1,7 +1,7 @@
 const spinBtn = document.querySelector(".spin-btn");
 const leaderboard = document.getElementById("leaderboard");
 const circleCanvas = document.getElementById("myCanvas");
-const userName = document.getElementById("username");
+let userName = document.getElementById("username");
 const exitBoard = document.getElementById("exit-board");
 const container = document.getElementById("container");
 const finalVal = document.getElementById("final-value")
@@ -9,18 +9,19 @@ const box = document.getElementById("box");
 const closeScore = document.getElementById("close");
 const balance = document.getElementById("balance");
 const spinArrow = document.getElementById("spin-arrow");
+const board = document.querySelector(".board")
 
 leaderboard.addEventListener("click", () => {
-    container.classList.add("leaderboard-active");
-})
+    board.style.display = "flex";
+});
 
 exitBoard.addEventListener("click", () => {
-    container.classList.remove("leaderboard-active");
-})
+    board.style.display = "none";
+});
 
 closeScore.addEventListener("click", () => {
     box.style.display = "none"
-})
+});
 
 const rotationValues = [
     {
@@ -169,3 +170,52 @@ spinBtn.addEventListener("click", () => {
         }
     }, 10)
 });
+
+
+
+
+userName.value = "D'anonymousCoder";
+const STORAGE_KEYS = {
+    CURRENT_BALANCE: "",
+    PLAYER_NAME: "",
+    GAME_SESSIONS: ""
+}
+
+function saveToLocal(key, value) {
+    try {
+        localStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+        console.error("not saving local db:", error)
+    }
+}
+
+function loadFromLocal(key, defVal = null) {
+    try {
+        const item = localStorage.getItem(key);
+        return item ? JSON.parse(item) : defVal;
+    } catch (error) {
+        console.error("Error loading from local db");
+        return defVal;
+    }
+}
+
+function saveGameSession(score) {
+    const sessions = loadFromLocal(STORAGE_KEYS.GAME_SESSIONS, []);
+    const newSession = {
+        mooney: moneyAddUp,
+        spins: spins,
+        playerName: userName.value || 'Anon',
+        timestamp: new Date().toISOString(),
+        date: new Date().toLocaleDateString()
+    };
+
+    sessions.unshift(newSession);
+
+    if (sessions.length > 50) {
+        sessions.splice(50);
+    }
+
+    saveToLocal(STORAGE_KEYS.GAME_SESSIONS, sessions)
+}
+
+
