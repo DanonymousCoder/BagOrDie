@@ -10,6 +10,9 @@ const balance = document.getElementById("balance");
 const spinArrow = document.getElementById("spin-arrow");
 const board = document.querySelector(".board");
 
+const userOnBoard = document.getElementById("user-l");
+const userBalance = document.getElementById("user-lb");
+
 
 const STORAGE_KEYS = {
     CURRENT_BALANCE: "currentBalance",
@@ -22,6 +25,20 @@ let userName = document.getElementById("username");
 let moneyAddUp = loadFromLocal(STORAGE_KEYS.CURRENT_BALANCE, 0);
 let totalSpins = loadFromLocal(STORAGE_KEYS.TOTAL_SPINS, 0);
 let currentSessionSpins = 0;
+
+
+
+function initializeBalance() {
+    if (balance) {
+        balance.textContent = `${moneyAddUp.toLocaleString()}`;
+    }
+
+    userOnBoard.textContent = loadFromLocal(STORAGE_KEYS.PLAYER_NAME, "Anon");
+    userBalance.textContent = `${moneyAddUp.toLocaleString()}`;
+}
+
+initializeBalance();
+
 
 leaderboard.addEventListener("click", () => {
     updateLeaderboard();
@@ -76,9 +93,9 @@ const rotationValues = [
 const eachSize = [80, 80, 80, 80, 80, 80];
 
 const wheelColors = [
-    "#bc1",
     "#808080",
     "#808080",
+    "#FF0000",
     "#808080",
     "#808080",
     "#808080"
