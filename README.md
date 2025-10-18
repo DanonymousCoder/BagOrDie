@@ -1,14 +1,14 @@
 # BagOrDie
 
-Take a risk to get richer or DIE
+Greed test - are you greedy enough to get take the risk to get SUPER rich or DIE!!!
 
 ## Key Features & Benefits
 
-- **Risk-Reward Gameplay:** Experience the thrill of taking chances to potentially increase your wealth, but be aware of the risk of losing it all.
-- **Interactive Spin Mechanic:** Engage with a visually appealing spinning wheel that determines your fate.
-- **Leaderboard(WIP):** Compete against other players and climb the ranks to showcase your luck and strategic risk-taking.
-- **Dynamic Balance Tracking:** Monitor your in-game balance and make informed decisions based on your current wealth.
-- **Not so Visually Appealing Interface(Hahaha):** Enjoy a clean and engaging user interface designed for an immersive gaming experience.
+- **Risk-Reward Gameplay:** Get the chance to spin to get SUPER richer, but be aware that you could DIE i.e lose all your money hahaha
+- **Interactive Spinning wheel:** interact with a not so visually appealing wheel lol, that determines your FATE.
+- **Leaderboard(WIP):** Compete against other players and climb the ranks to showcase your luck and greediness level.
+- **Dynamic Balance Tracking:** Monitor your game balance and make greedy or contented decisions based on your current wealth level.
+- **Not so Visually Appealing Interface(Hahaha):** Enjoy a not so clean but engaging user interface designed for a fun gambling experience.
 
 ## Prerequisites & Dependencies
 
@@ -33,7 +33,7 @@ Take a risk to get richer or DIE
 
 This project is a front-end game. The core logic is implemented in `script.js`.  There is no external API documentation as there are no external APIs used.
 
-*   **Spinning the wheel:** Click the "Spin" button to start the wheel spinning and determine your outcome.
+*   **Spinning the wheel:** Click the "Spin" button to start the wheel spin and determine your outcome.
 
 ## Project Structure
 
