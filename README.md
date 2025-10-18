@@ -61,10 +61,7 @@ Contributions are welcome! To contribute:
 1.  Fork the repository.
 2.  Create a new branch for your feature or bug fix.
 3.  Make your changes and commit them with clear, descriptive messages.
-4.  Submit a pull request.f
-## License Information
-
-License not specified. All rights reserved.
+4.  Submit a pull request.
 
 ## Acknowledgments
 
